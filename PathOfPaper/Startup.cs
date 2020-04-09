@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using PathOfPaper.Data;
+using PathOfPaper.Data.Skill.Intelligence;
 
 namespace PathOfPaper
 {
@@ -29,6 +30,10 @@ namespace PathOfPaper
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
+
+
+            var arc = new Arc();
+            var description = arc.Description.Get();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
