@@ -4,6 +4,10 @@ html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
+body {
+    background-color: #EDF0F2;
+}
+
 a, .btn-link {
     color: #0366d6;
 }
@@ -21,25 +25,29 @@ app {
 }
 
 .top-row {
-    height: 3.5rem;
+    height: 50px;
     display: flex;
     align-items: center;
 }
 
 .main {
+    background-color: #f7f7f7;
     flex: 1;
 }
 
-    .main .top-row {
-        background-color: #f7f7f7;
-        border-bottom: 1px solid #d6d5d5;
-        justify-content: flex-end;
-    }
+.main .top-row {
+    border-bottom: 1px solid #d6d5d5;
+    justify-content: flex-end;
+}
 
-        .main .top-row > a, .main .top-row .btn-link {
-            white-space: nowrap;
-            margin-left: 1.5rem;
-        }
+.top-row {
+    background-color: white;
+}
+
+.main .top-row > a, .main .top-row .btn-link {
+    white-space: nowrap;
+    margin-left: 1.5rem;
+}
 
 .main .top-row a:first-child {
     overflow: hidden;
@@ -47,7 +55,7 @@ app {
 }
 
 .sidebar {
-    background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%);
+    background-color: #2B445A;
 }
 
     .sidebar .top-row {
@@ -97,8 +105,24 @@ app {
                 color: white;
             }
 
+.horizontal {
+    display: flex;
+    flex-direction: row;
+}
+
+.vertical {
+    display: flex;
+    flex-direction: column;
+}
+
+.center {
+    justify-content: center;
+    align-items: center;
+}
+
 .content {
     padding-top: 1.1rem;
+    height: calc(100% - 50px);
 }
 
 .navbar-toggler {
@@ -168,7 +192,7 @@ app {
     }
 
     .main > div {
-        padding-left: 2rem !important;
+        padding-left: 1.5rem !important;
         padding-right: 1.5rem !important;
     }
 

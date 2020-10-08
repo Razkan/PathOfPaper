@@ -1,0 +1,46 @@
+﻿@using System.Text
+
+<style>
+    .info-box {
+        background-color: white;
+        margin: 5px;
+    }
+</style>
+
+<div class="info-box" style="@GetStyle()">
+    @ChildContent
+</div>
+
+@code {
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    public string width { get; set; }
+
+    [Parameter]
+    public string height { get; set; }
+
+    [Parameter]
+    public string maxWidth { get; set; }
+
+    [Parameter]
+    public string maxHeight { get; set; }
+
+    [Parameter]
+    public string borderColor { get; set; }
+
+
+    public string GetStyle()
+    {
+        var builder = new StringBuilder();
+
+        builder.Append(string.IsNullOrEmpty(width) ? "width:inherit;" : $"width:{width}px;");
+        builder.Append(string.IsNullOrEmpty(height) ? "height:inherit;" : $"height:{height}px;");
+        builder.Append(string.IsNullOrEmpty(maxWidth) ? "max-width:inherit;" : $"max-width:{maxWidth}px;");
+        builder.Append(string.IsNullOrEmpty(maxHeight) ? "max-height:inherit;" : $"max-height:{maxHeight}px;");
+        builder.Append(string.IsNullOrEmpty(borderColor) ? "box-shadow:0px 0px 2px 1px gray;" : $"box-shadow: 0px 0px 2px 1px {borderColor};");
+
+        return builder.ToString();
+    }
+}

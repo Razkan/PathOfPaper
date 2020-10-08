@@ -1,0 +1,120 @@
+<!DOCTYPE html><html lang='en'><head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Path of Paper</title>
+    <base href="/~/" />
+    <link rel="stylesheet" href="/css/bootstrap/bootstrap.min.css" />
+    <link href="/css/site.css" rel="stylesheet" />
+</head><body><app>
+        <div class="sidebar">
+    <div class="top-row pl-4 navbar navbar-dark">
+    <a class="navbar-brand" href>Path of Paper</a>
+    <button class="navbar-toggler" onclick="1">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+</div>
+
+<div class="collapse" onclick="2">
+    <ul class="nav flex-column">
+        <li class="nav-item px-3">
+            <a href="" class="nav-link">
+                <span class="oi oi-home" aria-hidden="true"></span> Main
+            </a>
+        </li>
+        <li class="nav-item px-3">
+            <a href="charactersheet" class="nav-link">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> Character Sheet
+            </a>
+        </li>
+    </ul>
+</div>
+</div>
+
+<div class="main">
+    <div class="top-row px-4">
+    </div>
+
+    <div class="content px-4">
+        <style>
+    .info-box {
+        background-color: white;
+    }
+
+    .character {
+        display: flex;
+        align-items: center;
+
+        height: 100px;
+    }
+
+    .character-image {
+        margin-left: 5px;
+        
+        max-width: 90px;
+        height: 90px;
+    }
+
+    .avatar {
+        height: 100%;
+        max-width: 100%;
+
+        border-radius: 5px;
+
+        object-fit: contain;
+    }
+
+    .character-text {
+        padding-left: 10px;
+    }
+
+    .character-name {
+        font-size: 20px;
+    }
+
+    .character-type {
+        color: gray;
+        font-size: 10px;
+    }
+
+    .character-level { }
+</style>
+
+    <div class="info-box">
+        <div class="character">
+            <div class="character-image">
+                <img class="avatar" src="https://i.pinimg.com/originals/14/5e/f1/145ef1143ce2e2326ae10c7779b6cafe.jpg" />
+            </div>
+            <div class="character-text">
+                <div class="character-name">Wik &quot;Shade&quot; Blackhand </div>
+                <div class="character-type">Male Marauder Juggernaut 14</div>
+                <div class="character-level">Level 14</div>
+            </div>
+        </div>
+    </div>
+    <div class="info-box">
+        <div>
+
+        </div>
+    </div>
+
+    </div>
+</div>
+    </app>
+            <script>
+                // Create WebSocket connection.
+                var scheme = 'wss';
+                var port = document.location.port ? (':' + document.location.port) : '';
+                var url = scheme + '://' + document.location.hostname + port + '/ws';
+                var socket = new WebSocket(url);
+
+                // Connection opened
+                //socket.addEventListener('open', function(event) {
+                //    socket.send('Hello Server!');
+                //});
+
+                // Listen for messages
+                socket.addEventListener('message', function(event) {
+                    console.log('Message from server ', event.data);
+                    document.body.innerHTML = event.data;
+                });
+            </script></body></html>

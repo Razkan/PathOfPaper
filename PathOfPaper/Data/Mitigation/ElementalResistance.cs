@@ -1,7 +1,7 @@
 ﻿namespace PathOfPaper.Data.Mitigation
 {
-    public class ElementalResistance
+    public class ElementalResistance : IMitigation
     {
-        
+        public int Value { get; set; }
     }
 }

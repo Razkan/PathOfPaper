@@ -1,0 +1,15 @@
+﻿@using System.Text
+
+<style>
+</style>
+
+<div class="">
+    <div>Your content is below:</div>
+    <div>@ChildContent</div>
+</div>
+
+@code {
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+}

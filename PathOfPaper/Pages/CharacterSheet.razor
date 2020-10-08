@@ -1,0 +1,228 @@
+﻿@page "/charactersheet"
+
+@using PathOfPaper.Shared;
+@using PathOfPaper.Data.Character
+@inject Character Character
+
+<style>
+    /*.info-box {
+        background-color: white;
+        box-shadow: 0px 0px 2px 1px #888888;
+        margin: 5px;
+    }*/
+
+    .character {
+        display: flex;
+        align-items: center;
+        height: 100px;
+    }
+
+    .character-image {
+        margin-left: 5px;
+        max-width: 90px;
+        height: 90px;
+    }
+
+    .avatar {
+        height: 100%;
+        max-width: 100%;
+        border-radius: 5px;
+        object-fit: contain;
+    }
+
+    .character-text { padding-left: 10px; }
+
+    .character-name { font-size: 20px; }
+
+    .character-type {
+        color: gray;
+        font-size: 10px;
+    }
+
+    .character-level { }
+
+    .attribute {
+        height: 100px;
+        align-items: center;
+    }
+
+    .attribute-neutral { box-shadow: 0px 0px 2px 1px #888888; }
+
+    .dexterity { box-shadow: 0px 0px 2px 1px green; }
+
+    .intelligence { box-shadow: 0px 0px 2px 1px blue; }
+
+    .strength { box-shadow: 0px 0px 2px 1px red; }
+
+    .attribute-neutral,
+    .dexterity,
+    .intelligence,
+    .strength {
+        width: 90px;
+        height: 90px;
+        margin-left: 15px;
+        line-height: 30px;
+        border-radius: 5px;
+    }
+
+    .attribute-name {
+        font-size: 10px;
+        color: #a5a5a5;
+    }
+
+    .attribute-modifier { font-size: 22px; }
+
+    .attribute-modifier-symbol {
+        font-size: 20px;
+        color: #a5a5a5;
+        padding-right: 2px;
+    }
+
+    .attribute-total { }
+
+    #hp {
+        background-image: url(./images/globe_hp.png);
+        float: left;
+    }
+
+    #mana {
+        background-image: url(./images/globe_mana.png);
+        float: right;
+    }
+
+    .bubble {
+        width: 200px;
+        height: 250px;
+        background-repeat: no-repeat;
+        background-position: 0 50px;
+        position: relative;
+        margin: 10px;
+        text-align: center;
+        font-weight: 700;
+    }
+</style>
+
+@if (character == null)
+{
+    <p>
+        <em>Loading character...</em>
+    </p>
+}
+else
+{
+    <div class="vertical">
+
+        @*<div class="info-box">
+                <div class="character">
+                    <div class="character-image">
+                        <img class="avatar" src="@character.Image" />
+                    </div>
+                    <div class="character-text">
+                        <div class="character-name">@character.FirstName "@character.NickName" @character.LastName </div>
+                        <div class="character-type">@character.Gender @character.Class @character.Ascendancy @character.Level.Value</div>
+                        <div class="character-level">Level @character.Level.Value</div>
+                    </div>
+                </div>
+            </div>*@
+
+        <InfoBox>
+            <div class="character">
+                <div class="character-image">
+                    <img class="avatar" src="@character.Image"/>
+                </div>
+                <div class="character-text">
+                    <div class="character-name">@character.FirstName "@character.NickName" @character.LastName </div>
+                    <div class="character-type">@character.Gender @character.Class @character.Ascendancy @character.Level.Value</div>
+                    <div class="character-level">Level @character.Level.Value</div>
+                </div>
+            </div>
+        </InfoBox>
+
+        <InfoBox>
+            <div class="attribute horizontal">
+                <div class="dexterity vertical center">
+                    <div class="attribute-name">@character.Dexterity.Name</div>
+                    <div class="attribute-modifier horizontal center">
+                        <div class="attribute-modifier-symbol">
+                            @GetSymbol(character.Dexterity.Value - character.Dexterity.Base)
+                        </div>@(Math.Abs(character.Dexterity.Value - character.Dexterity.Base))
+                    </div>
+                    <div>(@character.Dexterity.Value)</div>
+                </div>
+                <div class="intelligence vertical center">
+                    <div class="attribute-name">@character.Intelligence.Name</div>
+                    <div class="attribute-modifier horizontal center">
+                        <div class="attribute-modifier-symbol">
+                            @GetSymbol(character.Intelligence.Value - character.Intelligence.Base)
+                        </div>@(Math.Abs(character.Intelligence.Value - character.Intelligence.Base))
+                    </div>
+                    <div>(@character.Intelligence.Value)</div>
+                </div>
+                <div class="strength vertical center">
+                    <div class="attribute-name">@character.Strength.Name</div>
+                    <div class="attribute-modifier horizontal center">
+                        <div class="attribute-modifier-symbol">
+                            @GetSymbol(character.Strength.Value - character.Strength.Base)
+                        </div>@(Math.Abs(character.Strength.Value - character.Strength.Base))
+                    </div>
+                    <div>(@character.Strength.Value)</div>
+                </div>
+                <div class="attribute-neutral vertical center">
+                    <div class="attribute-name">@character.Athletic.Name</div>
+                    <div class="attribute-modifier horizontal center">
+                        <div class="attribute-modifier-symbol">
+                            @GetSymbol(character.Athletic.Value - character.Athletic.Base)
+                        </div>@(Math.Abs(character.Athletic.Value - character.Athletic.Base))
+                    </div>
+                    <div>(@character.Athletic.Value)</div>
+                </div>
+                <div class="attribute-neutral vertical center">
+                    <div class="attribute-name">@character.Maneuver.Name</div>
+                    <div class="attribute-modifier horizontal center">
+                        <div class="attribute-modifier-symbol">
+                            @GetSymbol(character.Maneuver.Value - character.Maneuver.Base)
+                        </div>@(Math.Abs(character.Maneuver.Value - character.Maneuver.Base))
+                    </div>
+                    <div>(@character.Maneuver.Value)</div>
+                </div>
+            </div>
+        </InfoBox>
+    </div>
+}
+
+@code {
+
+    private Character character;
+
+    public string GetSymbol(int value)
+    {
+        if (value == 0) return "";
+        if (value < 0) return "-";
+        return "+";
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        character = new Character();
+        character.FirstName = "Wik";
+        character.NickName = "Shade";
+        character.LastName = "Blackhand";
+
+        character.Gender = "Male";
+        character.Class = "Marauder";
+        character.Ascendancy = "Juggernaut";
+
+    //character.Image = "https://i.pinimg.com/originals/53/4e/fd/534efd2c88e91dd25be6fa6652907e76.png";
+        character.Image = "https://i.pinimg.com/originals/14/5e/f1/145ef1143ce2e2326ae10c7779b6cafe.jpg";
+
+        character.Level = new Level {Value = 14};
+
+        character.Dexterity = new Data.Dexterity {Base = 20, Value = 15};
+        character.Intelligence = new Data.Intelligence {Base = 10, Value = 20};
+        character.Strength = new Data.Strength {Base = 10, Value = 25};
+
+        character.Athletic = new Data.Athletic {Base = 5, Value = 5};
+        character.Maneuver = new Data.Maneuver {Base = 5, Value = 7};
+    }
+
+}

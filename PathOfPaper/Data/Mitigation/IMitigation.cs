@@ -2,6 +2,6 @@
 {
     public interface IMitigation
     {
-        
+        int Value { get; set; }
     }
 }

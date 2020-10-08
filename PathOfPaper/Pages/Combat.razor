@@ -1,0 +1,61 @@
+﻿@page "/combat"
+
+
+    <style>
+        #hp {
+            background-image: url(./images/globe_hp.png);
+            float: left;
+        }
+
+        #mana {
+            background-image: url(./images/globe_mana.png);
+            float: right;
+        }
+
+        .bubble {
+            width: 200px;
+            height: 250px;
+            background-repeat: no-repeat;
+            background-position: 0 50px;
+            position: relative;
+            margin: 10px;
+            text-align: center;
+            font-weight: 700;
+        }
+    </style>
+
+combat page
+
+<div>
+    <div class="bubble" id="hp">
+        Reserved:
+        <span class="reserved ng-binding">
+            0%
+            <em>(0%)</em>
+        </span><br>
+        Life:
+        <span class="total ng-binding">
+            1000
+            <em class="ng-binding ng-hide">(1000)</em>
+            / 1000
+        </span>
+        <div style="height: 0px"></div>
+        <div class="droppable" style="height: 0px"></div>
+    </div>
+    
+    <div class="bubble" id="mana">
+        Reserved:
+        <span class="reserved ng-binding">
+            0%
+            <em>(0%)</em>
+        </span><br>
+        Life:
+        <span class="total ng-binding">
+            1000
+            <em class="ng-binding ng-hide">(1000)</em>
+            / 1000
+        </span>
+        <div style="height: 0px"></div>
+        <div class="droppable" style="height: 0px"></div>
+    </div>
+</div>
